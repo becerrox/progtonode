@@ -187,6 +187,7 @@ h1{
 
 text{
 	fill: white;
+	cursor: pointer;
 }
 
 .show-results{
@@ -271,4 +272,8 @@ text{
 .spinner-container{
   height: 88px;
   width: 131px;
+}
+
+.circle{
+  cursor: pointer;
 }
