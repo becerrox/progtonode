@@ -16,7 +16,6 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
         <!-- libs -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/lib/angular.min.js"></script>
         <script type="text/javascript" src="js/lib/particles.min.js"></script>
         <script type="text/javascript" src="js/lib/sigma.min.js"></script>
@@ -132,8 +131,9 @@
                                         </div>
                                     </div>
                                     <div class="buttons">
+                                        <button class="btn info-buttons"><i class="ion-network"></i>&nbsp;&nbsp;Journey</button>
                                         <button class="btn info-buttons"><i class="ion-ios-musical-notes"></i>&nbsp;&nbsp;Albums</button>
-                                        <button class="btn info-buttons"><i class="ion-social-youtube-outline"></i>&nbsp;&nbsp;Videos</buttonn>                                    
+                                        <button type="button" class="btn info-buttons" data-toggle="modal" data-target="#myModal"><i class="ion-social-youtube-outline"></i>&nbsp;&nbsp;Videos</buttonn>                                    
                                     </div>
                                 </div>
                             </div>
@@ -211,6 +211,29 @@
                     </div>
                 </div>
             </div>
+
+            <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Listen some {{artistBase.name}} music</h4>
+      </div>
+      <div ng-if="playlist_id!=undefined" class="modal-body">
+       <iframe width="560" height="315" ng-src="{{trustSrc(playlist_id_current)}}" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <center><button ng-click="refreshPlayer(playlist_id)" type="button" class="btn btn-default"><span class="ion-ios-refresh-empty"></span>&nbsp;Refresh to current artists</button></center>
+      </br>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="ion-ios-close-outline"></span>&nbsp;&nbsp;Close</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
         </footer>
             <script>
                     particlesJS.load('particles-js', 'particles.json', function() {

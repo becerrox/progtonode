@@ -4,7 +4,8 @@ Author: Rafael Becerra
 Date: 19/11/2015
 */
 
-progtonode.controller('mainController', function($scope ,$http, services){
+progtonode.controller('mainController', function($scope ,$http, services,$sce){
+
 	$scope.searching=false;
 	$scope.tracking=[];
 	$scope.searchArtist=function(keyword){
@@ -50,10 +51,24 @@ progtonode.controller('mainController', function($scope ,$http, services){
 			if($scope.artistBase.members!=undefined)
 				buildGraph($scope.artistBase.name,$scope.artistBase.members,0);				
 			buildProfileText($scope.artistBase.profile);
+			//Fetch youtube data
+			$scope.youtubePlaylist($scope.artistBase.name);
 		});		
 	}
 	};
 
+	$scope.refreshPlayer=function(playlist){
+		$scope.playlist_id_current=playlist;
+	};
+
+
+	$scope.youtubePlaylist=function(q){
+		services.youtubeService(q).then(function(data){
+				$scope.playlist_id="https://www.youtube.com/embed/videoseries?list="+data.data.items[0].id.playlistId;
+				if($scope.playlist_id_current==undefined)
+					$scope.refreshPlayer($scope.playlist_id);
+		});
+	}
 
 	buildGraph=function(name,groups,level){
 		graph.nodes.push({"name":name,"group":1});
@@ -81,6 +96,10 @@ progtonode.controller('mainController', function($scope ,$http, services){
 		id_search=document.URL.substring(document.URL.indexOf("id")+3,document.URL.length);
 		$scope.showArtistData(id_search,undefined);
 	}
+
+	$scope.trustSrc = function(src) {
+    return $sce.trustAsResourceUrl(src);
+  }
 
 });
 

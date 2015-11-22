@@ -360,3 +360,7 @@ text{
     width: 50%;
     left: auto;
 }
+
+.modal-title{
+  color:#000;
+}
