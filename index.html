@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
         <!-- libs -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/lib/angular.min.js"></script>
         <script type="text/javascript" src="js/lib/particles.min.js"></script>
         <script type="text/javascript" src="js/lib/sigma.min.js"></script>
@@ -137,16 +138,30 @@
                                 </div>
                             </div>
                             </div>
+                            <div ng-if="tracking.length>1" id="wizard" class="form_wizard wizard_horizontal">
+                                    <ul class="wizard_steps anchor">
+                                        <li ng-repeat="track in tracking">
+                                            <a href="#step-1" class="done" isdone="1" rel="1">
+                                                <span class="step_no">{{$index+1}}</span>
+                                        <small>{{track.name}}</small>
+                                    </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                        
+                                </div>
                         </center>
-                        
                     </div>
                 </div>
+
             </div>
         </div>
+
         <div class="section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
+
                         <h1 class="text-primary">How it works?</h1>
                         <h3>Aquí se explica como funciona</h3>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
@@ -207,6 +222,7 @@
                         var bg=Math.floor((Math.random() * 4) + 1);
                         $(".cover-image,.footer").attr("style","background-image : url('img/"+bg+".jpg'); background-position: center; background-size:cover;")
                     
+ 
                     $("text,circle, graph text").click(function(){
                         alert("a");
                     })

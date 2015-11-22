@@ -4,7 +4,7 @@
 function drawGraph(graph){
 d3.select("svg").remove();
 var width = 780,
-    height = 600;
+    height = 500;
 
 var color = d3.scale.category20();
 
