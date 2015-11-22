@@ -5,7 +5,6 @@ Date: 19/11/2015
 */
 
 progtonode.controller('mainController', function($scope ,$http, services){
-
 	$scope.searching=false;
 	$scope.tracking=[];
 	$scope.searchArtist=function(keyword){
@@ -42,8 +41,8 @@ progtonode.controller('mainController', function($scope ,$http, services){
 		services.getArtistInfo(id).then(function(data){
 			$scope.artistBase=data.data.data;
 			$scope.tracking.push({id:id,name:$scope.artistBase.name});
-			console.log($scope.tracking);
-			$scope.img_artist=$scope.artistBase.images[0].uri150;
+			if($scope.artistBase.images!=undefined)
+				$scope.img_artist=$scope.artistBase.images[0].uri150;
 			//Build graph in case artist is musician
 			if($scope.artistBase.groups!=undefined)
 				buildGraph($scope.artistBase.name,$scope.artistBase.groups,0);
